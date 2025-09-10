@@ -64,7 +64,26 @@ Realiza la division por medio solo restas te da el resultado de la operacion y e
 
 
 ## CDR, CAR, CADR
+Una lista en Lisp está formada por celdas (cons), cada una con:
+
+car → devuelve el primer elemento.
+
+cdr → devuelve la cola de la lista (todos menos el primero).
+
+Se pueden combinar hasta 4 niveles de car y cdr:
+
+cadr = (car (cdr L)) → segundo elemento.
+
+caddr = (car (cdr (cdr L))) → tercer elemento.
+
+cadddr= (car (cdr (cdr (cdr L)))) → cuarto elemento.
+
+cdddr = (cdr (cdr (cdr L))) → la cola desde el 4to.
+
+Solo existen combinaciones hasta 4 letras (ej. cadddr), no más.
+
 ###  ( a b c ( d 1) ( c x ) m n)
+
 (D 1)
 
 <img width="468" height="50" alt="Captura de pantalla 2025-09-10 094803" src="https://github.com/user-attachments/assets/cc33bbb8-e2fc-459d-9a4c-7bc0dd90cb7d" />
