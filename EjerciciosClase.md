@@ -63,3 +63,58 @@ Realiza la division por medio solo restas te da el resultado de la operacion y e
 <img width="467" height="64" alt="image" src="https://github.com/user-attachments/assets/a7e93d2b-d688-4ea5-82ff-89d1d91829ad" />
 
 
+## CDR, CAR, CADR
+###  ( a b c ( d 1) ( c x ) m n)
+(D 1)
+
+<img width="468" height="50" alt="Captura de pantalla 2025-09-10 094803" src="https://github.com/user-attachments/assets/cc33bbb8-e2fc-459d-9a4c-7bc0dd90cb7d" />
+
+X
+
+<img width="730" height="51" alt="Captura de pantalla 2025-09-10 102751" src="https://github.com/user-attachments/assets/1224c2c9-6772-4a2f-9635-ff21198fb187" />
+
+D
+
+<img width="694" height="54" alt="Captura de pantalla 2025-09-10 102923" src="https://github.com/user-attachments/assets/5f5c1c2e-f750-4bb2-87b0-d067495b9d2b" />
+
+### ((( a b c (d) e f ((g h)) i j t)
+T
+
+<img width="1464" height="56" alt="Captura de pantalla 2025-09-10 105148" src="https://github.com/user-attachments/assets/8603c845-8565-4946-8cf6-060dacd1af4f" />
+
+G
+
+<img width="1289" height="53" alt="Captura de pantalla 2025-09-10 110351" src="https://github.com/user-attachments/assets/b243f2aa-ad3c-4473-a088-42a9534454cf" />
+
+(D)
+
+<img width="995" height="55" alt="Captura de pantalla 2025-09-10 110550" src="https://github.com/user-attachments/assets/7378b613-dabd-4e72-8ec1-41ea226e3bf0" />
+
+B
+
+<img width="823" height="52" alt="Captura de pantalla 2025-09-10 110735" src="https://github.com/user-attachments/assets/285fb9dd-146c-4582-82d0-1109ad320d05" />
+
+### ((( a b c d )) 1 (2) 3 (4 5) ((6 (7) 8))
+B
+
+<img width="886" height="44" alt="image" src="https://github.com/user-attachments/assets/537ba8c1-3d54-4523-9456-93583183fdc0" />
+
+D
+
+<img width="1018" height="49" alt="image" src="https://github.com/user-attachments/assets/fac00e86-e8c6-4b6c-8bba-7ac12b3c7f3b" />
+
+(2)
+
+<img width="826" height="54" alt="Captura de pantalla 2025-09-10 114107" src="https://github.com/user-attachments/assets/d0b17535-32ec-4ff1-bb9a-512247a51c29" />
+
+(7)
+
+<img width="1188" height="53" alt="Captura de pantalla 2025-09-10 113627" src="https://github.com/user-attachments/assets/d4ee10a1-7909-4cd3-8e81-0a98bfb0c8b1" />
+
+5
+
+<img width="1110" height="56" alt="Captura de pantalla 2025-09-10 114436" src="https://github.com/user-attachments/assets/daeeba88-9d42-419a-9afe-37f7285b81f4" />
+
+6
+
+<img width="1060" height="59" alt="Captura de pantalla 2025-09-10 114522" src="https://github.com/user-attachments/assets/75831d04-b281-467d-8e5d-fed87a1936d7" />
