@@ -137,3 +137,142 @@ D
 6
 
 <img width="1060" height="59" alt="Captura de pantalla 2025-09-10 114522" src="https://github.com/user-attachments/assets/75831d04-b281-467d-8e5d-fed87a1936d7" />
+
+Perfecto 🙌 te armo el apunte con los conceptos y la función `holamundo` en **CLISP** usando tanto `printc` como `format`.
+
+---
+
+## Printc  y Format
+**`printc`**
+
+   * Evalúa y muestra cadenas y expresiones.
+   * Puede parecer que imprime dos veces por la **doble evaluación**.
+   * Ejemplo:
+
+     ```lisp
+     (printc "Hola") ;; imprime Hola y devuelve "Hola"
+     ```
+
+**`format`**
+
+   * Maneja salidas de texto con formato.
+   * `(format nil "texto")` → devuelve la cadena.
+   * `(format t "texto")` → imprime en pantalla.
+   * Ejemplo:
+
+     ```lisp
+     (format t "La suma es: ~a~%" (+ 2 3))
+     ;; La suma es: 5
+     ```
+
+
+```lisp
+;; Con printc
+(defun holamundo-printc ()
+  (printc "Hola mundo"))
+
+;; Con format
+(defun holamundo-format ()
+  (format t "Hola mundo~%"))
+```
+
+* `printc` → imprime una cadena y también devuelve la cadena (doble evaluación).
+* `format` → controla mejor la salida, `t` significa que imprime en pantalla, y `~%` es un salto de línea.
+
+---
+
+## Comparacion entre UNLESS, IF y WHEN
+
+**`unless`**
+
+   * Sintaxis: `(unless condicion expresiones...)`
+   * Significa *“a menos que”*.
+   * Ejecuta el cuerpo solo si la condición es **falsa**.
+   * Ejemplo:
+
+     ```lisp
+     (unless (= 1 2)
+       (print "Esto se imprime porque 1 no es igual a 2"))
+     ```
+**`when`**
+
+   * Sintaxis: `(when condicion expresiones...)`
+   * Ejecuta el cuerpo solo si la condición es **verdadera**.
+   * Tiene un **`progn` implícito** (se pueden poner varias expresiones).
+   * Ejemplo:
+
+     ```lisp
+     (when (> 5 3)
+       (print "5 es mayor que 3")
+       (print "Se ejecutó el when"))
+     ```
+
+   **`if`**
+
+   * Necesita **dos ramas**: la verdadera y la falsa.
+   * Ejemplo:
+
+     ```lisp
+     (if (= 2 2)
+         (print "Es verdadero")
+         (print "Es falso"))
+     ```
+
+```
+(defun evalua(a b)
+  (when (< a b)
+    (format t "Evaluacion del when ~%")
+    (format t "A < B")
+  )
+  
+  (unless (< a b))
+  (format t "Evaluacion del unless ~%")
+    (format t "A > B")
+)
+
+(defun evalua(a b)
+  (if (< a b)
+  (progn ;Se puede cargar mas de dos declaraciones(cargar un bloque con mas lineas)
+  (format t "Evaluacion del if ~%")
+  (format t "A < B")
+  )
+  (format nill "B > A")
+  )
+)
+```
+
+
+## progn
+
+   * Agrupa varias expresiones y devuelve **el valor de la última**.
+   * Ejemplo:
+
+     ```
+     (progn
+       (print "Primero")
+       (print "Segundo")
+       (+ 2 3)) ; => 5
+    (defun evalua(a b)
+      (if (< a b)
+        (progn ;Se puede cargar mas de dos declaraciones(cargar un bloque con mas lineas)
+        (format t "Evaluacion del if ~%")
+        (format t "A < B")
+        )
+        (format nill "B > A")
+      )
+    )
+
+    
+
+
+
+## assoc
+
+   * Busca un par `(clave . valor)` en una lista asociativa (alist).
+   * Ejemplo:
+
+     ```lisp
+     (assoc 'a '((a . 1) (b . 2) (c . 3)))
+     ;; => (A . 1)
+     ```
+
