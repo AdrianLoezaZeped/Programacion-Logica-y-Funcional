@@ -276,3 +276,61 @@ Perfecto 🙌 te armo el apunte con los conceptos y la función `holamundo` en *
      ;; => (A . 1)
      ```
 
+## cond
+
+* Sirve para evaluar **varias condiciones** (como `if – else if – else`).
+* Cada condición se evalúa en orden, y cuando una es **verdadera**, ejecuta su bloque.
+* La palabra clave **`t`** se usa como "caso por defecto" (otherwise).
+
+**Sintaxis:**
+
+```lisp
+(cond
+  (condicion1 expresion1 ...)
+  (condicion2 expresion2 ...)
+  ...
+  (t expresion-por-defecto))
+```
+
+**Ejemplo:**
+
+```lisp
+(cond
+  ((> x 0) (print "Positivo"))
+  ((= x 0) (print "Cero"))
+  (t       (print "Negativo")))
+```
+
+---
+
+### case
+
+* Se usa para comparar un **valor fijo** contra varias opciones (similar a `switch-case` en otros lenguajes).
+* Cada opción es un **literal o símbolo**.
+* La palabra clave **`otherwise`** funciona como "caso por defecto".
+
+**Sintaxis:**
+
+```lisp
+(case valor
+  (opcion1 expresion1 ...)
+  (opcion2 expresion2 ...)
+  ...
+  (otherwise expresion-por-defecto))
+```
+
+**Ejemplo:**
+
+```lisp
+(case x
+  (1 (print "Uno"))
+  (2 (print "Dos"))
+  (3 (print "Tres"))
+  (otherwise (print "Otro número")))
+```
+
+---
+
+* **`cond`** → evalúa **condiciones lógicas** (útil para rangos, comparaciones, etc.).
+* **`case`** → compara un **único valor** contra varias opciones fijas.
+
