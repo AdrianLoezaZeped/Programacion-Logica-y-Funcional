@@ -1,3 +1,6 @@
+# Problema de Juguete
+Los problemas de juguete o problemas de juguete (toy problems) en programación lógica son ejemplos sencillos y de baja complejidad, diseñados para ilustrar y practicar los conceptos básicos del paradigma de la programación lógica, como las cláusulas, las consultas, las uniones y el backtracking. Se utilizan para entender cómo el motor de inferencia de un lenguaje lógico deduce soluciones a partir de un conjunto de hechos y reglas, y no son problemas complejos que requieren un análisis profundo o algoritmos sofisticados. 
+
 ## Asertijo 1
 Cuatro personas necesitan cruzar un puente de noche con un sola
 linterna. El puente es frágil y solo puede soportar a dos personas a
@@ -40,6 +43,16 @@ El vecino que fuma Blends vive al lado del que toma agua.
 3	Roja	Británico	Leche	Pall Mall	Pájaros
 4	Verde	Alemán	Café	Prince	Pez
 5	Blanca	Sueco	Cerveza	Bluemaster	Perro
+## Asertijo 3 
+Hay que cruzar un granjero, pollo, coyote y un maiz pero no se pueden quedar el pollo con el coyote, ni el pollo con el maiz
+Primero cruzas al granjero con el pollo
+Despues cruzas el granjero con el coyote y regresas al pollo 
+Despues cruzas el maiz 
+Despues cruzas el pollo 
+
+Para resolver en lisp se utiliza "Espacios de Estados" se desglosa todas las combinaciones para determinar si tienen nodos terminales o si se puede desarollar todavia mas, para poder llegar a todas las soluciones posibles, eso se utiliza la mayor parte de los programas de programacion logicas y funcional se realiza el desarollo hasta llegar el estado final
+por medio de "assoc, car, cdr" se utilizan los espacios de solucion para poder recorrer todo el arbol generado 
+
 
 
 
