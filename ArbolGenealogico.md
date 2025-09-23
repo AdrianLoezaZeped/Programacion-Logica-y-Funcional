@@ -1,0 +1,20 @@
+# Arbol Genealogico
+### Abuelos
+*	Filiberto
+*	Eugenia
+*	Mela
+*	Eustacio
+### Tios
+* Luna
+*	Tavo
+*	Gabriel
+*	Luis
+*	Catalina
+### Primos
+*	Luis
+*	Alan 
+*	Santy
+*	Andrea
+### Papas
+*	Sol 
+*	Baltazar
