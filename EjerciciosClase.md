@@ -333,4 +333,123 @@ Perfecto 🙌 te armo el apunte con los conceptos y la función `holamundo` en *
 
 * **`cond`** → evalúa **condiciones lógicas** (útil para rangos, comparaciones, etc.).
 * **`case`** → compara un **único valor** contra varias opciones fijas.
+En CLISP, `mapcar`, `oddp` y `evenp` son funciones muy útiles para trabajar con listas y números. A continuación te explico el funcionamiento de cada una con ejemplos.
 
+-----
+
+## mapcar
+
+La función **`mapcar`** es una herramienta poderosa para el procesamiento de listas. Su propósito es aplicar una función a cada elemento de una o más listas y devolver una nueva lista con los resultados.
+
+**Sintaxis:**
+
+```lisp
+(mapcar <función> <lista-1> <lista-2> ... <lista-n>)
+```
+
+**Funcionamiento:**
+
+1.  **Aplica una función:** Toma una función como su primer argumento.
+2.  **Recorre las listas:** Aplica esa función a los elementos de las listas que se le pasan como argumentos. Si se proporciona más de una lista, la función tomará el primer elemento de cada lista como sus argumentos, luego el segundo de cada una, y así sucesivamente.
+3.  **Se detiene con la lista más corta:** El proceso se detiene cuando se llega al final de la lista más corta.
+4.  **Devuelve una nueva lista:** Retorna una lista nueva que contiene los resultados de cada aplicación de la función.
+
+**Ejemplos:**
+
+  * **Aplicar una función a una sola lista:** Incrementar en uno cada elemento de una lista.
+
+    ```lisp
+    (mapcar #'1+ '(1 2 3 4 5))
+    ```
+
+    **Resultado:** `(2 3 4 5 6)`
+    *Aquí, `#'1+` es la función que suma 1 a su argumento.*
+
+  * **Aplicar una función a múltiples listas:** Sumar los elementos correspondientes de dos listas.
+
+    ```lisp
+    (mapcar #'+ '(1 2 3) '(10 20 30))
+    ```
+
+    **Resultado:** `(11 22 33)`
+    *En la primera pasada, calcula `(+ 1 10)`, en la segunda `(+ 2 20)`, y así sucesivamente.*
+
+  * **Uso con una función `lambda` (anónima):** Obtener el cuadrado de cada número en una lista.
+
+    ```lisp
+    (mapcar #'(lambda (x) (* x x)) '(1 2 3 4))
+    ```
+
+    **Resultado:** `(1 4 9 16)`
+
+-----
+
+### \#\# `oddp` y `evenp`
+
+Estas dos funciones son predicados, lo que significa que devuelven un valor booleano: `T` (verdadero) o `NIL` (falso). Se utilizan para determinar si un número entero es impar o par.
+
+### `oddp`
+
+La función **`oddp`** comprueba si un número entero es **impar**.
+
+**Sintaxis:**
+
+```lisp
+(oddp <número-entero>)
+```
+
+**Funcionamiento:**
+
+  * Devuelve `T` si el número es impar.
+  * Devuelve `NIL` si el número es par.
+
+**Ejemplos:**
+
+```lisp
+(oddp 3)   ; Devuelve T
+(oddp 10)  ; Devuelve NIL
+(oddp -7)  ; Devuelve T
+```
+
+### `evenp`
+
+La función **`evenp`** comprueba si un número entero es **par**.
+
+**Sintaxis:**
+
+```lisp
+(evenp <número-entero>)
+```
+
+**Funcionamiento:**
+
+  * Devuelve `T` si el número es par.
+  * Devuelve `NIL` si el número es impar.
+
+**Ejemplos:**
+
+```lisp
+(evenp 4)   ; Devuelve T
+(evenp 9)   ; Devuelve NIL
+(evenp -2)  ; Devuelve T
+```
+
+-----
+
+### \#\# Combinando las funciones
+
+Puedes usar `oddp` o `evenp` junto con otras funciones como `remove-if` o `remove-if-not` para filtrar listas. Por ejemplo, para obtener solo los números impares de una lista:
+
+```lisp
+(remove-if-not #'oddp '(1 2 3 4 5 6 7 8 9))
+```
+
+**Resultado:** `(1 3 5 7 9)`
+
+Y para obtener solo los números pares:
+
+```lisp
+(remove-if-not #'evenp '(1 2 3 4 5 6 7 8 9))
+```
+
+**Resultado:** `(2 4 6 8)`
