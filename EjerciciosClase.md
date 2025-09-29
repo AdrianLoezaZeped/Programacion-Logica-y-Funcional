@@ -453,3 +453,202 @@ Y para obtener solo los números pares:
 ```
 
 **Resultado:** `(2 4 6 8)`
+
+## Funciones de Volumen y de Area 
+Utilizando las siguientes funciones: printc , readline format t,Setq,setf ,let , read
+
+### Se define pi para usarlo en los cálculos que lo requieran.
+(defconstant +pi+ pi)
+
+### 1. Área de un Cuadrado
+```
+(defun area-cuadrado ()
+  (princ "Ingrese el lado del cuadrado: ")
+  (let ((lado (read)))
+    (format t "El área del cuadrado es: ~a unidades cuadradas.~%" (* lado lado))))
+```
+### 2. Área de un Rectángulo
+```
+(defun area-rectangulo ()
+  (let (base altura)
+    (princ "Ingrese la base del rectángulo: ")
+    (setf base (read))
+    (princ "Ingrese la altura del rectángulo: ")
+    (setf altura (read))
+    (format t "El área del rectángulo es: ~a unidades cuadradas.~%" (* base altura))))
+```
+### 3. Área de un Círculo
+```
+(defun area-circulo ()
+  (princ "Ingrese el radio del círculo: ")
+  (let* ((radio (read))
+         (area (* +pi+ radio radio)))
+    (format t "El área del círculo es: ~f unidades cuadradas.~%" area)))
+```
+### 4. Área de un Triángulo (con base y altura)
+```
+(defun area-triangulo ()
+  (princ "Ingrese la base del triángulo: ")
+  (let ((base (read)))
+    (princ "Ingrese la altura del triángulo: ")
+    (let ((altura (read)))
+      (format t "El área del triángulo es: ~a unidades cuadradas.~%" (/ (* base altura) 2)))))
+```
+### 5. Área de un Trapecio
+```
+(defun area-trapecio ()
+  (let (base-mayor base-menor altura)
+    (princ "Ingrese la base mayor: ")
+    (setf base-mayor (read))
+    (princ "Ingrese la base menor: ")
+    (setf base-menor (read))
+    (princ "Ingrese la altura: ")
+    (setf altura (read))
+    (format t "El área del trapecio es: ~a unidades cuadradas.~%" (* (/ (+ base-mayor base-menor) 2) altura))))
+```
+### 6. Área de un Rombo
+```
+(defun area-rombo ()
+  (princ "Ingrese la diagonal mayor: ")
+  (let ((D (read)))
+    (princ "Ingrese la diagonal menor: ")
+    (let ((d (read)))
+      (format t "El área del rombo es: ~a unidades cuadradas.~%" (/ (* D d) 2)))))
+```
+### 7. Área de un Elipse
+```
+(defun area-elipse ()
+  (let (semi-eje-a semi-eje-b)
+    (princ "Ingrese el semi-eje mayor (a): ")
+    (setf semi-eje-a (read))
+    (princ "Ingrese el semi-eje menor (b): ")
+    (setf semi-eje-b (read))
+    (format t "El área de la elipse es: ~f unidades cuadradas.~%" (* +pi+ semi-eje-a semi-eje-b))))
+```
+### 8. Área de un Polígono Regular
+```
+(defun area-poligono-regular ()
+  (princ "Ingrese el número de lados: ")
+  (let ((n (read)))
+    (princ "Ingrese la longitud de un lado: ")
+    (let ((lado (read)))
+      (princ "Ingrese la apotema: ")
+      (let ((apotema (read)))
+        (let* ((perimetro (* n lado))
+               (area (/ (* perimetro apotema) 2)))
+          (format t "El área del polígono regular es: ~a unidades cuadradas.~%" area))))))
+```
+### 9. Área de un Paralelogramo
+```
+(defun area-paralelogramo ()
+  (let (base altura)
+    (princ "Ingrese la base del paralelogramo: ")
+    (setf base (read))
+    (princ "Ingrese la altura del paralelogramo: ")
+    (setf altura (read))
+    (format t "El área del paralelogramo es: ~a unidades cuadradas.~%" (* base altura))))
+```
+### 10. Área de la superficie de una Esfera
+```
+(defun area-superficie-esfera ()
+  (princ "Ingrese el radio de la esfera: ")
+  (let* ((radio (read))
+         (area (* 4 +pi+ (expt radio 2))))
+    (format t "El área de la superficie de la esfera es: ~f unidades cuadradas.~%" area)))
+```
+
+### 1. Volumen de un Cubo
+```
+(defun volumen-cubo ()
+  (princ "Ingrese la longitud de la arista del cubo: ")
+  (let ((arista (read)))
+    (setf (symbol-value 'volumen) (* arista arista arista))
+    (format t "El volumen del cubo es: ~a unidades cúbicas.~%" volumen)))
+```
+### 2. Volumen de un Paralelepípedo (o Cuboide)
+```
+(defun volumen-paralelepipedo ()
+  (let (largo ancho alto)
+    (princ "Ingrese el largo: ")
+    (setf largo (read))
+    (princ "Ingrese el ancho: ")
+    (setf ancho (read))
+    (princ "Ingrese el alto: ")
+    (setf alto (read))
+    (format t "El volumen es: ~a unidades cúbicas.~%" (* largo ancho alto))))
+```
+### 3. Volumen de una Esfera
+```
+(defun volumen-esfera ()
+  (princ "Ingrese el radio de la esfera: ")
+  (let* ((radio (read))
+         (volumen (* (/ 4.0 3.0) +pi+ (expt radio 3))))
+    (format t "El volumen de la esfera es: ~f unidades cúbicas.~%" volumen)))
+```
+### 4. Volumen de un Cilindro
+```
+(defun volumen-cilindro ()
+  (princ "Ingrese el radio de la base del cilindro: ")
+  (let ((radio (read)))
+    (princ "Ingrese la altura del cilindro: ")
+    (let ((altura (read)))
+      (format t "El volumen del cilindro es: ~f unidades cúbicas.~%" (* +pi+ (expt radio 2) altura)))))
+```
+### 5. Volumen de un Cono
+```
+(defun volumen-cono ()
+  (let (radio altura)
+    (princ "Ingrese el radio de la base del cono: ")
+    (setf radio (read))
+    (princ "Ingrese la altura del cono: ")
+    (setf altura (read))
+    (let ((volumen (/ (* +pi+ (expt radio 2) altura) 3.0)))
+      (format t "El volumen del cono es: ~f unidades cúbicas.~%" volumen))))
+```
+### 6. Volumen de una Pirámide de base cuadrada
+```
+(defun volumen-piramide-cuadrada ()
+  (princ "Ingrese la longitud del lado de la base: ")
+  (let ((lado-base (read)))
+    (princ "Ingrese la altura de la pirámide: ")
+    (let ((altura (read)))
+      (format t "El volumen de la pirámide es: ~a unidades cúbicas.~%" (/ (* (expt lado-base 2) altura) 3)))))
+```
+### 7. Volumen de un Prisma Rectangular
+```
+(defun volumen-prisma-rectangular ()
+  (princ "Ingrese el área de la base: ")
+  (let ((area-base (read)))
+    (princ "Ingrese la altura del prisma: ")
+    (let ((altura (read)))
+      (format t "El volumen del prisma es: ~a unidades cúbicas.~%" (* area-base altura)))))
+```
+### 8. Volumen de un Elipsoide
+```
+(defun volumen-elipsoide ()
+  (let (a b c)
+    (princ "Ingrese el semi-eje a: ")
+    (setf a (read))
+    (princ "Ingrese el semi-eje b: ")
+    (setf b (read))
+    (princ "Ingrese el semi-eje c: ")
+    (setf c (read))
+    (format t "El volumen del elipsoide es: ~f unidades cúbicas.~%" (* (/ 4.0 3.0) +pi+ a b c))))
+```
+### 9. Volumen de un Toroide (Torus)
+```
+(defun volumen-toroide ()
+  (princ "Ingrese el radio mayor (R, desde el centro del toroide al centro del tubo): ")
+  (let ((R (read)))
+    (princ "Ingrese el radio menor (r, el radio del tubo): ")
+    (let ((r (read)))
+      (format t "El volumen del toroide es: ~f unidades cúbicas.~%" (* 2 (expt +pi+ 2) R (expt r 2))))))
+```
+### 10. Volumen de un Tetraedro Regular
+```
+(defun volumen-tetraedro-regular ()
+  (princ "Ingrese la longitud de la arista (a): ")
+  (let* ((a (read))
+         (volumen (/ (expt a 3) (* 6 (sqrt 2)))))
+    (format t "El volumen del tetraedro regular es: ~f unidades cúbicas.~%" volumen)))
+```
