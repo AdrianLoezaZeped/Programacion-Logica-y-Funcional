@@ -458,8 +458,9 @@ Y para obtener solo los números pares:
 Utilizando las siguientes funciones: printc , readline format t,Setq,setf ,let , read
 
 ### Se define pi para usarlo en los cálculos que lo requieran.
+```
 (defconstant +pi+ pi)
-
+```
 ### 1. Área de un Cuadrado
 ```
 (defun area-cuadrado ()
