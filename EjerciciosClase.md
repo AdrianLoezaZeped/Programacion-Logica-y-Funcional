@@ -653,3 +653,39 @@ Utilizando las siguientes funciones: printc , readline format t,Setq,setf ,let ,
          (volumen (/ (expt a 3) (* 6 (sqrt 2)))))
     (format t "El volumen del tetraedro regular es: ~f unidades cúbicas.~%" volumen)))
 ```
+## Funciones vistas en clase
+
+| Concepto | Propósito Principal | Ámbito / Persistencia |
+| :--- | :--- | :--- |
+| **`SETQ`** | Asigna un **valor** a un **símbolo** (variable). | Modifica una variable existente. Si es global (como una `DEFVAR`), el cambio es **persistente**. |
+| **`SETF`** | La forma de asignación **más general**. Puede asignar valores a **lugares** (como elementos de listas, *slots* de objetos, etc.), no solo a símbolos. | Es la forma preferida para la asignación persistente. El cambio **persiste** en el lugar modificado. |
+| **`DEFVAR`** | **Declara** y **opcionalmente inicializa** una **variable global**. | **Persistente** (global) y visible para todo el programa. |
+| **`LET`** | Crea **variables locales** y les asigna valores para un **bloque de código específico**. | **Temporal** (local) a su bloque de código. Las variables se **destruyen** al salir del bloque; el valor **no persiste** fuera de `LET`. |
+| **`LAMBDA`** | Crea una **función anónima** (sin nombre). | La función existe **solo donde se usa**. Si no se asigna o se pasa, se evalúa **al momento** y el objeto función se **descarta** (no "queda en memoria" como una definición global). |
+---
+## Profundización en Persistencia y Ámbito
+
+### Asignación de Valores (SETQ y SETF)
+
+* **`SETQ`** (de *SET Quoted*): Se usa para asignar un valor a una variable (símbolo). Es una forma más simple y limitada que `SETF`.
+    * *Ejemplo:* `(setq x 10)`
+
+* **`SETF`** (de *SET Field*): Es la herramienta de asignación **estándar y poderosa** de Lisp. Se usa para asignar un valor a **cualquier "lugar"** que pueda tener un valor (variables, elementos de estructuras, el primer elemento de una lista, etc.).
+    * *Ejemplo:* `(setf (car my-list) 'new-value)`
+    * **Persistencia:** La asignación realizada con `SETQ` o `SETF` a una variable **global** (como una definida con `DEFVAR`) o a una **propiedad de un objeto** es **permanente** (persiste) hasta que se reasigne o la imagen de la memoria se descarte.
+
+### Definición y Ámbito Global (DEFVAR)
+
+* **`DEFVAR`**: Se utiliza para crear variables que son **globales** a todo el entorno de Lisp (el sistema o *package*).
+    * **Persistencia:** El valor y la existencia de la variable **persisten** en la memoria del entorno Lisp durante toda la sesión. Por esta razón, decimos que la variable **"queda en memoria"** y puede ser accedida y modificada desde cualquier parte del programa.
+
+### Ámbito Local (LET)
+
+* **`LET`**: Es esencial para crear **variables locales** temporales. Estas variables solo existen dentro del *cuerpo* del `LET`.
+    * **Persistencia (Temporalidad):** Al ejecutarse el bloque de código de `LET`, las variables se crean. Cuando el bloque **termina**, las variables locales **desaparecen** (se limpian de la memoria o *stack*). El valor **no persiste** fuera de su contexto.
+
+### Funciones Anónimas (LAMBDA)
+
+* **`LAMBDA`**: Es la forma fundamental para crear un **objeto función**. Se le llama **anónima** porque se crea sin un nombre asociado.
+    * **Temporalidad ("Solo se hace al momento"):** Cuando un `LAMBDA` se evalúa directamente (sin ser asignado a un nombre con `DEFUN` o `SETF`), crea y ejecuta la función **al instante**. El objeto función en sí mismo **no queda registrado globalmente**. Para que **persista**, el objeto función (el *cierre*) debe ser asignado a una variable (e.g., usando `SETF` o `DEFVAR`) o pasado como argumento.
+    * *Nota:* Técnicamente, el objeto función puede **persistir** si es capturado por un *cierre* (una función creada dentro de otra función), pero en un uso simple (como argumento) es **transitorio**.
