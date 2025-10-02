@@ -54,6 +54,7 @@ Propiedades	Es un planeta.	La cualidad o característica que se le atribuye a "L
 
 Variables/Cuantificadores/Relaciones	Ninguno.	No hay generalización ("todos") ni relación con otro objeto.
 
+
 • La Luna no es un planeta.
 
 Dominio del Discurso	Objetos celestes.	El grupo de cosas al que pertenece "La Luna".
@@ -66,6 +67,7 @@ Conectiva Lógica	No (la negación).	El operador que invierte el valor de verdad
 
 Variables/Cuantificadores/Relaciones	Ninguno.	No hay generalización ni relación con otros objetos.
 
+
 • La Luna es un satélite.
 
 Dominio del Discurso	Objetos celestes.	El grupo de cosas al que pertenece "La Luna".
@@ -76,6 +78,7 @@ Propiedades	Es un satelite.
 
 Variables/Cuantificadores/Relaciones	Ninguno.	No hay generalización ni relación con otros objetos.
 
+
 • La Tierra gira alrededor del Sol.
 
 Dominio del Discurso	Objetos celestes..
@@ -85,6 +88,7 @@ Constante de Individuo	La tierra, Sol.
 Propiedades	Es gira alrededor.	
 
 Variables/Cuantificadores/Relaciones	Niguna.	
+
 
 • Todo planeta es un satélite.
 
@@ -102,13 +106,165 @@ Variables/Relaciones	Niguna.
 
 
 • Todo planeta gira alrededor del Sol.
+
+Dominio del Discurso	Objetos celestes..
+
+Constante de Individuo	Sol.
+
+Variable de Individuo X
+
+Propiedades	Es planeta .	
+
+Cuantificadores Todo
+
+Relacion Gira alrededor
+
+Variables	Niguna.	
+
+
 • Algún planeta gira alrededor de la Luna.
+
+Dominio del Discurso	Objetos celestes..
+
+Constante de Individuo	Luna.
+
+Variable de Individuo X
+
+Propiedades	Es planeta.	
+
+Cuantificadores Existencial
+
+Relacion Gira alrededor de
+
+
 • Hay por lo menos un satélite.
+
+Dominio del Discurso	Objetos celestes..
+
+Variable de Individuo X
+
+Propiedades	Es satelite.	
+
+Cuantificadores Existencial
+
+
 • Todos los perros del vecindario muerden a algún cartero.
+
+Dominio del Discurso	Seres del Vecindario..
+
+Variables de Individuo	Cartero.
+
+Variables de Individuo	Perros del Vecindario.
+
+Variable de Individuo X
+
+Propiedades	Muerden.	
+
+Cuantificadores universal Todo
+
+Cuantificadores existenciales muerden al cartero
+
+Relacion muerden a
+
+Constantes de individuo Ninguna
+
+
 • Hay un cartero al que lo muerden todos los perros
+
+Dominio del Discurso	Seres del Vecindario..
+
+Variables de Individuo	Cartero.
+
+Variables de Individuo	Perros del Vecindario.
+
+Propiedades	Es cartero y perro.	
+
+Cuantificadores universal Todo los perros
+
+Cuantificadores existenciales Hay un cartero
+
+Constantes de individuo Ninguna
+
+
 • Todos los carteros son mordidos por algún perro
+
+Dominio del Discurso	Seres del Vecindario..
+
+Variables de Individuo	Cartero.
+
+Variables de Individuo	Perros del Vecindario.
+
+Variable de Individuo X
+
+Propiedades	Muerden.	
+
+Cuantificadores universal Todo los perros
+
+Cuantificadores existenciales Algun perro
+
+Relacion es mordido por(o muerde a)
+
+
 • Hay un perro que muerde a todos los carteros
+
+Dominio del Discurso	Seres del Vecindario..
+
+Variables de Individuo	Cartero.
+
+Variables de Individuo	Perro.
+
+Propiedades	Es cartero , es perro.	
+
+Cuantificadores universal Todos los carteros
+
+Cuantificadores existenciales Hay un perro
+
+Relacion es mordido por(o muerde a)
+
+
 • Todos los perros que asustan a algún cartero, lo muerden
+
+Dominio del Discurso	Seres del Vecindario..
+
+Variables de Individuo	Cartero.
+
+Variables de Individuo	Perro.
+
+Propiedades	Es cartero, es perro.	
+
+Cuantificadores universal Todos los perros
+
+Cuantificadores existenciales asustan algun cartero
+
+Relacion Asustar, muerden a 
+
+
 • Hay un perro que muerde a todos los perros que muerden a algún cartero
+
+Dominio del Discurso	Seres del Vecindario..
+
+Variables de Individuo	Cartero.
+
+Variables de Individuo	Perro.
+
+Propiedades	Es cartero, es perro, morder algun cartero.	
+
+Cuantificadores universal Muerde a todos los perros 
+
+Cuantificadores existenciales Hay un perro, muerden a algun cartero
+
+Relacion morder a algun cartero
+
+
 • Hay un solo perro que se muerde a sí mismo
+
+Dominio del Discurso	Seres del Vecindario..
+
+Variables de Individuo	Perro.
+
+Propiedades	Es perro
+
+Cuantificadores existenciales Hay un perro solo perro
+
+Relacion Muerde a
 
