@@ -341,5 +341,112 @@ Medicamentos relacionados:
 
 * Inmunoterapia (disminuye el tumor que produce irritación)
 
+  
+## Codigo
+```
+%%--------------------------------------------------------------------------------------------------
+%% DECLARACIÓN DE ENFERMEDADES
+%%--------------------------------------------------------------------------------------------------
 
+enfermedad(gonorrea).
+enfermedad(diabetes_gestacional).
+enfermedad(cancer_piel_pie).
+
+%%--------------------------------------------------------------------------------------------------
+%% SÍNTOMAS DE CADA ENFERMEDAD (VERSIÓN SIMPLIFICADA)
+%%--------------------------------------------------------------------------------------------------
+
+% Gonorrea
+sintomade(ardor, gonorrea).
+sintomade(secrecion, gonorrea).
+sintomade(dolor_testiculos, gonorrea).
+sintomade(dolor_pelvico, gonorrea).
+sintomade(sangrado, gonorrea).
+sintomade(picazon_rectal, gonorrea).
+sintomade(dolor_garganta, gonorrea).
+sintomade(dolor_ojos, gonorrea).
+
+% Diabetes gestacional
+sintomade(sed, diabetes_gestacional).
+sintomade(orina_frecuente, diabetes_gestacional).
+sintomade(fatiga, diabetes_gestacional).
+sintomade(vision_borrosa, diabetes_gestacional).
+sintomade(infecciones, diabetes_gestacional).
+sintomade(nauseas, diabetes_gestacional).
+
+% Cáncer de piel en el pie
+sintomade(lunar_cambia, cancer_piel_pie).
+sintomade(mancha_crece, cancer_piel_pie).
+sintomade(herida_no_sana, cancer_piel_pie).
+sintomade(bulto, cancer_piel_pie).
+sintomade(dolor, cancer_piel_pie).
+sintomade(inflamacion, cancer_piel_pie).
+sintomade(picazon, cancer_piel_pie).
+
+%%--------------------------------------------------------------------------------------------------
+%% CÁLCULO DE PROBABILIDAD (MISMA ESTRUCTURA ORIGINAL)
+%%--------------------------------------------------------------------------------------------------
+
+buscar([], _, 0).
+buscar(X, E, 1):- sintomade(X, E).
+buscar([X|Xs], E, P) :- enfermedad(E), buscar(X, E, S1), buscar(Xs, E, S2), P is S1 + S2.
+
+cantSint(E, C) :- findall(X, sintomade(X, E), L), length(L, R), C is R.
+
+diagnostico([X|Xs], E, K):- buscar([X|Xs], E, P), cantSint(E, T), K is P*100/T.
+
+%%--------------------------------------------------------------------------------------------------
+%% MEDICAMENTOS POR ENFERMEDAD
+%%--------------------------------------------------------------------------------------------------
+
+% Gonorrea
+medicinade(ceftriaxona, gonorrea).
+medicinade(azitromicina, gonorrea).
+medicinade(doxiciclina, gonorrea).
+medicinade(cefixima, gonorrea).
+medicinade(gentamicina, gonorrea).
+
+% Diabetes gestacional (controlan glucosa)
+medicinade(insulina, diabetes_gestacional).
+medicinade(metformina, diabetes_gestacional).
+medicinade(gliburida, diabetes_gestacional).
+
+% Cáncer de piel en el pie
+medicinade(pembrolizumab, cancer_piel_pie).
+medicinade(nivolumab, cancer_piel_pie).
+medicinade(ipilimumab, cancer_piel_pie).
+medicinade(vemurafenib, cancer_piel_pie).
+medicinade(dabrafenib, cancer_piel_pie).
+medicinade(trametinib, cancer_piel_pie).
+medicinade(dacarbazina, cancer_piel_pie).
+medicinade(temozolomida, cancer_piel_pie).
+
+%%--------------------------------------------------------------------------------------------------
+%% RELACIÓN SÍNTOMA → MEDICAMENTO (TU MISMA ESTRUCTURA)
+%%--------------------------------------------------------------------------------------------------
+
+recetade(M, S):- sintomade(S, E), medicinade(M, E).
+
+%%--------------------------------------------------------------------------------------------------
+%% ESPECIALISTAS
+%%--------------------------------------------------------------------------------------------------
+
+especialistade(urologo, gonorrea).
+especialistade(ginecologo, gonorrea).
+
+especialistade(endocrinologo, diabetes_gestacional).
+
+especialistade(oncologo, cancer_piel_pie).
+especialistade(dermatologo, cancer_piel_pie).
+
+%%--------------------------------------------------------------------------------------------------
+%% QUIÉN RECETA QUÉ (misma regla que tenías)
+%%--------------------------------------------------------------------------------------------------
+
+mereceta(Especialista, Medicina, Enfermedad):-
+    medicinade(Medicina, Enfermedad),
+    especialistade(Especialista, Enfermedad).
+
+%%--------------------------------------------------------------------------------------------------
+```
 
