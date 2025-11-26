@@ -689,3 +689,29 @@ Utilizando las siguientes funciones: printc , readline format t,Setq,setf ,let ,
 * **`LAMBDA`**: Es la forma fundamental para crear un **objeto función**. Se le llama **anónima** porque se crea sin un nombre asociado.
     * **Temporalidad ("Solo se hace al momento"):** Cuando un `LAMBDA` se evalúa directamente (sin ser asignado a un nombre con `DEFUN` o `SETF`), crea y ejecuta la función **al instante**. El objeto función en sí mismo **no queda registrado globalmente**. Para que **persista**, el objeto función (el *cierre*) debe ser asignado a una variable (e.g., usando `SETF` o `DEFVAR`) o pasado como argumento.
     * *Nota:* Técnicamente, el objeto función puede **persistir** si es capturado por un *cierre* (una función creada dentro de otra función), pero en un uso simple (como argumento) es **transitorio**.
+
+# Arbol de derivacion de respuesta de eliza
+## Consulta realizada
+<img width="272" height="22" alt="image" src="https://github.com/user-attachments/assets/71ba713f-40d8-4938-bc82-2dac2d1e373c" />
+
+| Paso | Regla (Predicado) | Entrada & Patrón | Resultado |
+| :--- | :--- | :--- | :--- |
+| **1. Plantilla** | `template/3` | `[hola, _]` (Patrón General) | `Resp: ['Hola', 'como', 'estas', 'tu', '?'], IndStim: []` |
+| **2. Coincidencia** | `match/2` | `match([hola, _], [hola, mi, nombre, es, adrian])` | **EXITOSO** |
+| **3. Reemplazo** | `replace0/5` | `replace0([], [hola, ...], 0, Resp, R)` | **R = Resp** |
+
+---
+
+## 🔍 Desglose del Proceso `match/2`
+
+| Patrón Restante | Entrada Restante | Regla Aplicada | Explicación |
+| :---: | :---: | :---: | :--- |
+| **`[hola, _]`** | **`[hola, mi, nombre, es, adrian]`** | `match([S|Stim],[I|Input])` | Coincide el átomo **`hola`**. |
+| **`[_]`** | **`[mi, nombre, es, adrian]`** | `match([S|Stim],[I|Input])` | Coincide el átomo **`_`** con **`mi`**. |
+| **`[]`** | **`[nombre, es, adrian]`** | **`match([], _):- true`** | El patrón vacío coincide con cualquier lista restante de entrada (comportamiento clave de esta implementación). |
+| **`true`** | | | Coincidencia finalizada. |
+
+---
+## Resultado final
+<img width="484" height="161" alt="Captura de pantalla 2025-11-26 094236" src="https://github.com/user-attachments/assets/a7e91e6c-02b5-40a4-84da-71b9bb3d7b11" />
+
