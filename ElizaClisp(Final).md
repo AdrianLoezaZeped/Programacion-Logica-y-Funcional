@@ -1,3 +1,294 @@
+# ELIZA en CLISP
+
+El sistema se basa en **plantillas (templates), reglas y bases de conocimiento** para interpretar las frases del usuario y generar respuestas.
+
+El chatbot puede interactuar en distintos dominios:
+
+* Conversación general
+* Registro y seguimiento de pacientes
+* Análisis médico básico
+* Consultas sobre una base de familia
+* Consultas sobre una base de carros
+
+## Funcionalidades principales
+
+El chatbot es capaz de:
+
+* Mantener una conversación básica (saludos, despedidas, charla general)
+* Registrar un paciente por nombre
+* Guardar síntomas del paciente
+* Inferir posibles enfermedades
+* Calcular probabilidad de una enfermedad
+* Determinar severidad y nivel de riesgo
+* Detectar síntomas contradictorios
+* Generar un reporte médico completo
+* Responder preguntas sobre relaciones familiares
+* Responder preguntas sobre automóviles (precio, potencia, consumo, etc.)
+
+---
+
+## Flujo general del sistema
+
+El funcionamiento general de ELIZA sigue el siguiente flujo:
+
+1. El sistema muestra un mensaje de bienvenida.
+2. El usuario escribe una frase.
+3. La entrada se normaliza (minúsculas y sin signos).
+4. La frase se compara contra una lista de plantillas.
+5. Si hay coincidencia, se ejecuta la acción asociada.
+6. El chatbot genera una respuesta.
+7. El sistema espera una nueva entrada.
+8. El ciclo se repite hasta que el usuario escriba `adios` o `bye`.
+
+---
+
+## Normalización de la entrada
+
+Para evitar errores al comparar texto, la entrada del usuario se **normaliza** antes de procesarse:
+
+* Todas las palabras se convierten a minúsculas.
+* Se eliminan signos de puntuación como:
+
+  ```
+  . , ; : ( ) ? ! " '
+  ```
+* La frase se divide en palabras (tokens).
+
+### Ejemplo
+
+**Entrada del usuario:**
+
+```
+Hola, MI Nombre es Juan.
+```
+
+**Entrada normalizada:**
+
+```
+("hola" "mi" "nombre" "es" "juan")
+```
+
+Esto permite que el sistema compare frases de manera consistente, sin importar cómo escriba el usuario.
+
+---
+
+## Motor de patrones (Templates)
+
+El corazón del chatbot es un **motor de coincidencia de patrones** basado en plantillas.
+
+Cada plantilla define:
+
+1. **Patrón**: estructura esperada de la frase.
+2. **Acción**: qué debe hacer el sistema (bandera o texto).
+3. **Índices**: posiciones de palabras importantes dentro de la frase.
+
+### Ejemplo conceptual
+
+```
+(mi nombre es s)
+```
+
+Detecta frases como:
+
+```
+mi nombre es juan
+mi nombre es ana
+```
+
+El comodín `s` permite aceptar cualquier palabra en esa posición.
+
+---
+
+## Comodines en las plantillas
+
+Las plantillas pueden usar comodines para capturar palabras variables.
+
+### Ejemplo
+
+```
+(tengo s)
+```
+
+Acepta frases como:
+
+* tengo ardor
+* tengo fiebre
+* tengo dolor
+
+Esto hace que el chatbot sea más flexible y acepte muchas variantes de una misma intención.
+
+---
+
+## Generación de respuestas
+
+Cuando una plantilla coincide con la entrada:
+
+1. Se identifica la **bandera** asociada (por ejemplo `flagSintoma`).
+2. Se extraen las palabras importantes usando los índices.
+3. Se llama a la función correspondiente (médico, familia o carros).
+4. Se construye la respuesta final combinando texto y datos.
+
+Toda esta lógica se concentra en el sistema de **handlers**, que deciden qué hacer según el tipo de consulta.
+
+---
+
+## Manejo de memoria
+
+El sistema recuerda información durante la conversación usando variables globales.
+
+### Paciente actual
+
+Se guarda el paciente que está interactuando:
+
+```
+*paciente-actual*
+```
+
+Esto permite que todos los síntomas y diagnósticos se asocien correctamente a la misma persona.
+
+### Síntomas del paciente
+
+Los síntomas se almacenan en una tabla hash:
+
+```
+*paciente-sintomas*
+```
+
+Cada paciente tiene su propia lista de síntomas, que se va acumulando conforme avanza la conversación.
+
+---
+
+## Base médica
+
+La base médica está formada por hechos simples, como:
+
+* Síntomas asociados a enfermedades
+* Medicinas disponibles
+* Causas
+* Tratamientos
+* Lugares donde es común una enfermedad
+
+A partir de esta información, el sistema puede:
+
+* Sugerir enfermedades posibles
+* Calcular probabilidad
+* Evaluar severidad
+* Determinar nivel de riesgo
+* Generar recomendaciones médicas
+
+---
+
+## Diagnóstico básico
+
+Una enfermedad se considera **posible** si el paciente presenta **al menos uno de sus síntomas**.
+
+Esto permite dar diagnósticos tempranos aunque no estén todos los síntomas confirmados.
+
+---
+
+## Probabilidad, severidad y riesgo
+
+### Probabilidad
+
+Se calcula como:
+
+```
+(síntomas confirmados / síntomas totales de la enfermedad) * 100
+```
+
+### Severidad
+
+* 1 síntoma → Leve
+* 2 síntomas → Moderada
+* 3 o más síntomas → Severa
+
+### Riesgo
+
+El nivel de riesgo se calcula con reglas simples basadas en la cantidad de síntomas y el tipo de enfermedad.
+
+---
+
+## Árbol de decisión
+
+El sistema incluye un **árbol de decisión médico sencillo** que prioriza ciertos síntomas clave, por ejemplo:
+
+* Ardor o secreción → Gonorrea
+* Sed u orina frecuente → Diabetes gestacional
+* Cambios en lunares o heridas → Cáncer de piel
+
+Este árbol permite obtener diagnósticos rápidos cuando los síntomas son claros.
+
+---
+
+## Reporte médico completo
+
+El usuario puede solicitar un reporte con frases como:
+
+```
+dame un reporte completo
+```
+
+El reporte incluye:
+
+* Nombre del paciente
+* Síntomas confirmados
+* Enfermedades posibles
+* Probabilidad
+* Severidad
+* Nivel de riesgo
+* Tratamiento sugerido
+* Recomendación médica
+* Alertas por síntomas contradictorios (si existen)
+
+---
+
+## Base de familia
+
+El sistema incluye una base de conocimiento familiar basada en hechos simples como:
+
+* Padre
+* Madre
+* Esposo / esposa
+
+Con estas relaciones se pueden inferir:
+
+* Hijos
+* Hermanos
+* Abuelos
+
+### Ejemplos de preguntas
+
+* quien es el padre de sol
+* adrian es hermano de baltazarjr
+* quienes son los hermanos de tavo
+
+---
+
+## Base de carros
+
+El chatbot también puede responder preguntas sobre automóviles.
+
+La base de carros contiene información como:
+
+* Precio
+* País de fabricación
+* Potencia
+* Tipo de motor
+* Consumo
+* Nivel de seguridad
+
+A diferencia del módulo médico, **no se hacen inferencias**, solo consultas directas.
+
+### Ejemplos de preguntas
+
+* cuanto cuesta el ferrari 488
+* donde se fabrica el ford mustang
+* que motor tiene el bugatti chiron
+* cuantos caballos tiene el honda civic
+
+---
+
+# Codigo
 ```
 ;;;; ============================================================
 ;;;; ELIZA en CLISP (Familia / Carros / Médico)
